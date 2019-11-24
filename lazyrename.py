@@ -57,8 +57,3 @@ for folderName, subfolders, filenames in os.walk(dir):
             shutil.move(wrongFilename, correctFilename)
         else:
             print('Sera renomeado: \n"%s" para\n"%s"' % (wrongFilename, correctFilename))
-
-
-# Fonte
-# Livro Automatiando tarefas maçantes com python, capitulo 9 pos 6100
-# github https://is.gd/Mv8f8E
