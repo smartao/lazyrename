@@ -24,6 +24,7 @@ else:
     execucao = sys.argv[1]
     regex = sys.argv[2]
     dir = sys.argv[3]
+    os.chdir(dir)  # Atualizando diretorio de trabalho
 
 datePattern = re.compile(r"""^(.*?) # todo o texto antes da string (1)
     ((_)?{})        # String que desejamos remover (2 e 3)
@@ -48,12 +49,14 @@ for folderName, subfolders, filenames in os.walk(dir):
         correctFilename = beforePart + afterPart
 
         # Obtem os paths absolutos completo do arquivos
-        absWorkingDir = os.path.abspath('.')
+        absWorkingDir = os.path.abspath(folderName)
         wrongFilename = os.path.join(absWorkingDir, wrongFilename)
         correctFilename = os.path.join(absWorkingDir, correctFilename)
 
         if execucao == 'r':
-            print('Renomeando: \n"%s" para\n"%s"' % (wrongFilename, correctFilename))
+            print('Renomeando: \n"%s" para\n"%s"' %
+                  (wrongFilename, correctFilename))
             shutil.move(wrongFilename, correctFilename)
         else:
-            print('Sera renomeado: \n"%s" para\n"%s"' % (wrongFilename, correctFilename))
+            print('Sera renomeado: \n"%s" para\n"%s"' %
+                  (wrongFilename, correctFilename))
